@@ -51,3 +51,20 @@ VITE_API_URL=https://your-backend.workers.dev npm run build
 ```bash
 npm run preview
 ```
+
+## Deployment
+
+### Cloudflare Pages
+
+The build output in `dist/` includes:
+- `_headers` - Sets correct MIME types for JavaScript and CSS files
+- `_redirects` - SPA fallback routing
+
+Deploy the `dist/` folder to Cloudflare Pages. The `_headers` file ensures JavaScript files are served with `application/javascript` MIME type.
+
+### Other Platforms
+
+If deploying to a different platform, ensure:
+- JavaScript files (`.js`, `.mjs`) are served with `Content-Type: application/javascript`
+- CSS files are served with `Content-Type: text/css`
+- HTML files are served with `Content-Type: text/html`

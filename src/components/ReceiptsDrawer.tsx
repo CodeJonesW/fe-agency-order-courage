@@ -6,17 +6,25 @@ import './ReceiptsDrawer.css';
 interface ReceiptsDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  receipts?: Receipt[];
+  onReceiptsUpdate?: (receipts: Receipt[]) => void;
 }
 
-export function ReceiptsDrawer({ isOpen, onClose }: ReceiptsDrawerProps) {
-  const [receipts, setReceipts] = useState<Receipt[]>([]);
+export function ReceiptsDrawer({ isOpen, onClose, receipts: propReceipts, onReceiptsUpdate }: ReceiptsDrawerProps) {
+  const [receipts, setReceipts] = useState<Receipt[]>(propReceipts || []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isOpen) {
+    if (propReceipts) {
+      setReceipts(propReceipts);
+    }
+  }, [propReceipts]);
+
+  useEffect(() => {
+    if (isOpen && receipts.length === 0) {
       loadReceipts();
     }
   }, [isOpen]);
@@ -27,6 +35,7 @@ export function ReceiptsDrawer({ isOpen, onClose }: ReceiptsDrawerProps) {
       setError(null);
       const fetchedReceipts = await getReceipts();
       setReceipts(fetchedReceipts);
+      onReceiptsUpdate?.(fetchedReceipts);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load receipts');
       console.error('Error fetching receipts:', err);
