@@ -1,4 +1,4 @@
-# fe-game-1
+# fe-agency-order-courage
 
 Frontend for Game 1 - a minimal RPG-style quest interface.
 
@@ -21,7 +21,7 @@ The frontend will run on `http://localhost:5173` and proxy `/api/*` requests to 
 **Important:** Make sure the backend is running first:
 
 ```bash
-cd ../be-game-1
+cd ../be-agency-order-courage
 npm run dev
 ```
 

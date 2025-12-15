@@ -1,8 +1,9 @@
 /**
  * API client for backend communication.
- * Uses relative URLs (same origin) with Vite proxy.
+ * Uses environment-based API URLs (proxy in dev, direct in prod).
  */
 
+import { getApiBaseUrl } from './config';
 import type {
   StateResponse,
   QuestsResponse,
@@ -16,7 +17,8 @@ import type {
  * Fetches current player state.
  */
 export async function getState(): Promise<StateResponse> {
-  const response = await fetch('/api/state', {
+  const apiBase = getApiBaseUrl();
+  const response = await fetch(`${apiBase}/api/state`, {
     credentials: 'include', // Include cookies
   });
 
@@ -31,7 +33,8 @@ export async function getState(): Promise<StateResponse> {
  * Fetches available quests.
  */
 export async function getQuests(): Promise<QuestCardDTO[]> {
-  const response = await fetch('/api/quests', {
+  const apiBase = getApiBaseUrl();
+  const response = await fetch(`${apiBase}/api/quests`, {
     credentials: 'include', // Include cookies
   });
 
@@ -49,7 +52,8 @@ export async function getQuests(): Promise<QuestCardDTO[]> {
 export async function startQuest(
   questId: string
 ): Promise<QuestActionResponse> {
-  const response = await fetch(`/api/quests/${questId}/start`, {
+  const apiBase = getApiBaseUrl();
+  const response = await fetch(`${apiBase}/api/quests/${questId}/start`, {
     method: 'POST',
     credentials: 'include', // Include cookies
     headers: {
@@ -70,7 +74,8 @@ export async function startQuest(
 export async function completeQuest(
   questId: string
 ): Promise<QuestActionResponse> {
-  const response = await fetch(`/api/quests/${questId}/complete`, {
+  const apiBase = getApiBaseUrl();
+  const response = await fetch(`${apiBase}/api/quests/${questId}/complete`, {
     method: 'POST',
     credentials: 'include', // Include cookies
     headers: {
@@ -89,7 +94,8 @@ export async function completeQuest(
  * Fetches all receipts.
  */
 export async function getReceipts(): Promise<Receipt[]> {
-  const response = await fetch('/api/receipts', {
+  const apiBase = getApiBaseUrl();
+  const response = await fetch(`${apiBase}/api/receipts`, {
     credentials: 'include', // Include cookies
   });
 
@@ -105,7 +111,8 @@ export async function getReceipts(): Promise<Receipt[]> {
  * Creates a share link for a receipt.
  */
 export async function createShareLink(receiptId: string): Promise<{ url: string; token: string }> {
-  const response = await fetch(`/api/receipts/${receiptId}/share`, {
+  const apiBase = getApiBaseUrl();
+  const response = await fetch(`${apiBase}/api/receipts/${receiptId}/share`, {
     method: 'POST',
     credentials: 'include', // Include cookies
     headers: {
