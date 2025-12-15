@@ -1,6 +1,6 @@
 # fe-agency-order-courage
 
-Frontend for Game 1 - a minimal RPG-style quest interface.
+Frontend for Agency order Courage - a minimal RPG-style quest interface.
 
 ## Setup
 
