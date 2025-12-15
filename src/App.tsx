@@ -13,6 +13,7 @@ function App() {
   const [activeQuestId, setActiveQuestId] = useState<string | null>(null);
   const [narrative, setNarrative] = useState<NarrativeSummary | null>(null);
   const [receipts, setReceipts] = useState<Receipt[]>([]);
+  console.log('receipts', receipts);
   const [latestReceipt, setLatestReceipt] = useState<Receipt | null>(null);
   const [receiptsDrawerOpen, setReceiptsDrawerOpen] = useState(false);
   const [loading, setLoading] = useState(true);
