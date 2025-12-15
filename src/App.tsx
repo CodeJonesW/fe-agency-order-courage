@@ -154,8 +154,6 @@ function App() {
       <ReceiptsDrawer
         isOpen={receiptsDrawerOpen}
         onClose={() => setReceiptsDrawerOpen(false)}
-        receipts={receipts}
-        onReceiptsUpdate={setReceipts}
       />
     </div>
   );
