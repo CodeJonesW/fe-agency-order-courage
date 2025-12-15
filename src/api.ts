@@ -8,6 +8,8 @@ import type {
   QuestsResponse,
   QuestActionResponse,
   QuestCardDTO,
+  ReceiptsResponse,
+  Receipt,
 } from './types';
 
 /**
@@ -81,4 +83,20 @@ export async function completeQuest(
   }
 
   return response.json();
+}
+
+/**
+ * Fetches all receipts.
+ */
+export async function getReceipts(): Promise<Receipt[]> {
+  const response = await fetch('/api/receipts', {
+    credentials: 'include', // Include cookies
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch receipts: ${response.statusText}`);
+  }
+
+  const data: ReceiptsResponse = await response.json();
+  return data.receipts;
 }

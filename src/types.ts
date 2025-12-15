@@ -38,8 +38,24 @@ export interface QuestsResponse {
   quests: QuestCardDTO[];
 }
 
+export interface Receipt {
+  id: string;
+  createdAtMs: number;
+  questId: string;
+  questType: QuestType;
+  tone: NarrativeTone;
+  title: string;
+  line: string;
+  shareText: string;
+}
+
 export interface QuestActionResponse {
   state: StateResponse['state'];
   events: unknown[];
   narrative: NarrativeSummary | null;
+  receipt?: Receipt;
+}
+
+export interface ReceiptsResponse {
+  receipts: Receipt[];
 }
