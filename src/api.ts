@@ -100,3 +100,22 @@ export async function getReceipts(): Promise<Receipt[]> {
   const data: ReceiptsResponse = await response.json();
   return data.receipts;
 }
+
+/**
+ * Creates a share link for a receipt.
+ */
+export async function createShareLink(receiptId: string): Promise<{ url: string; token: string }> {
+  const response = await fetch(`/api/receipts/${receiptId}/share`, {
+    method: 'POST',
+    credentials: 'include', // Include cookies
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to create share link: ${response.statusText}`);
+  }
+
+  return response.json();
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createShareLink } from '../api';
 import type { Receipt } from '../types';
 import './ReceiptCard.css';
 
@@ -9,6 +10,8 @@ interface ReceiptCardProps {
 
 export function ReceiptCard({ receipt, onOpenReceipts }: ReceiptCardProps) {
   const [copied, setCopied] = useState(false);
+  const [shareLinkCopied, setShareLinkCopied] = useState(false);
+  const [sharing, setSharing] = useState(false);
 
   const typeColors = {
     agency: '#6b8e9f',
@@ -32,6 +35,21 @@ export function ReceiptCard({ receipt, onOpenReceipts }: ReceiptCardProps) {
     }
   };
 
+  const handleShareLink = async () => {
+    try {
+      setSharing(true);
+      const { url } = await createShareLink(receipt.id);
+      await navigator.clipboard.writeText(url);
+      setShareLinkCopied(true);
+      setTimeout(() => setShareLinkCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to create share link:', err);
+      alert('Failed to create share link. Please try again.');
+    } finally {
+      setSharing(false);
+    }
+  };
+
   return (
     <div className={`receipt-card receipt-card--${receipt.tone}`}>
       <div className="receipt-card__scroll">
@@ -52,6 +70,14 @@ export function ReceiptCard({ receipt, onOpenReceipts }: ReceiptCardProps) {
             aria-label="Copy share text"
           >
             {copied ? '✓ Copied' : 'Copy'}
+          </button>
+          <button
+            className="receipt-card__button receipt-card__button--share"
+            onClick={handleShareLink}
+            disabled={sharing}
+            aria-label="Create share link"
+          >
+            {shareLinkCopied ? '✓ Link copied' : sharing ? 'Creating...' : 'Share link'}
           </button>
           {onOpenReceipts && (
             <button

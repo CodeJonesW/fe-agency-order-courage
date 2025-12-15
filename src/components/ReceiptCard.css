@@ -92,6 +92,7 @@
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .receipt-card__button {
@@ -129,6 +130,22 @@
   border-color: #d4a574;
 }
 
-.receipt-card__button:active {
+.receipt-card__button--share {
+  background: transparent;
+  border-color: #6b8e9f;
+  color: #6b8e9f;
+}
+
+.receipt-card__button--share:hover:not(:disabled) {
+  background: rgba(107, 142, 159, 0.1);
+  border-color: #7ba0b3;
+}
+
+.receipt-card__button--share:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.receipt-card__button:active:not(:disabled) {
   transform: scale(0.98);
 }
