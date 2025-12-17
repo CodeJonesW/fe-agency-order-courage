@@ -50,6 +50,7 @@ export interface Receipt {
   title: string;
   line: string;
   shareText: string;
+  action?: string; // Optional user-recorded action
 }
 
 export interface QuestActionResponse {

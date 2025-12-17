@@ -100,6 +100,12 @@ export function ReceiptsDrawer({ isOpen, onClose }: ReceiptsDrawerProps) {
                       <div className="receipts-drawer__item-share">
                         <p className="receipts-drawer__item-share-text">{receipt.shareText}</p>
                       </div>
+                      {receipt.action && (
+                        <div className="receipts-drawer__item-action">
+                          <div className="receipts-drawer__item-action-label">What you did:</div>
+                          <div className="receipts-drawer__item-action-text">{receipt.action}</div>
+                        </div>
+                      )}
                       <button
                         className="receipts-drawer__item-copy"
                         onClick={() => handleCopy(receipt)}

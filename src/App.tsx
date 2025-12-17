@@ -108,7 +108,7 @@ function App() {
   return (
     <div className="app">
       <header className="app__header">
-        <h1>Agency Order Courage</h1>
+        <h2>Agency Order Courage</h2>
         <button
           className="app__receipts-button"
           onClick={() => setReceiptsDrawerOpen(true)}

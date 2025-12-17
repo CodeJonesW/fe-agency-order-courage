@@ -217,3 +217,29 @@ export async function createShareLink(receiptId: string): Promise<{ url: string;
   handlePlayerIdResponse(data);
   return data;
 }
+
+/**
+ * Records a user action for a completed quest.
+ */
+export async function recordQuestAction(
+  questId: string,
+  action: string
+): Promise<{ success: boolean; action: { id: string; questId: string; action: string; createdAtMs: number } }> {
+  const apiBase = getApiBaseUrl();
+  const response = await fetch(`${apiBase}/api/quests/${questId}/action`, {
+    method: 'POST',
+    credentials: 'include', // Include cookies
+    headers: createHeaders({
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify({ action }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to record action: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  handlePlayerIdResponse(data);
+  return data;
+}

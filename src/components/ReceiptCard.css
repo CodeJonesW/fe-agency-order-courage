@@ -149,3 +149,107 @@
 .receipt-card__button:active:not(:disabled) {
   transform: scale(0.98);
 }
+
+.receipt-card__action-input {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(139, 115, 85, 0.3);
+}
+
+.receipt-card__action-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #d0d0d0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.receipt-card__action-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(139, 115, 85, 0.5);
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.receipt-card__action-textarea:focus {
+  outline: none;
+  border-color: #d4a574;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.receipt-card__action-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.receipt-card__action-textarea::placeholder {
+  color: #888;
+}
+
+.receipt-card__button--save-action {
+  background: #6b8e9f;
+  border-color: #6b8e9f;
+  color: #fff;
+  flex: 0 0 auto;
+  min-width: 120px;
+}
+
+.receipt-card__button--save-action:hover:not(:disabled) {
+  background: #7ba0b3;
+  border-color: #7ba0b3;
+}
+
+.receipt-card__button--save-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.receipt-card__action-saved {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(107, 142, 159, 0.2);
+  border: 2px solid #6b8e9f;
+  border-radius: 4px;
+  color: #6b8e9f;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.receipt-card__recorded-action {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(139, 115, 85, 0.3);
+}
+
+.receipt-card__recorded-action-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #d0d0d0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.receipt-card__recorded-action-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  font-style: italic;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border-left: 3px solid #d4a574;
+}
