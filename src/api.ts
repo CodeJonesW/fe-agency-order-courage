@@ -10,7 +10,6 @@ import type {
   StateResponse,
   QuestsResponse,
   QuestActionResponse,
-  QuestCardDTO,
   ReceiptsResponse,
   Receipt,
 } from './types';
@@ -114,7 +113,7 @@ export async function getState(): Promise<StateResponse> {
 /**
  * Fetches available quests.
  */
-export async function getQuests(): Promise<QuestCardDTO[]> {
+export async function getQuests(): Promise<QuestsResponse> {
   const apiBase = getApiBaseUrl();
   const response = await fetch(`${apiBase}/api/quests`, {
     credentials: 'include', // Include cookies
@@ -127,7 +126,7 @@ export async function getQuests(): Promise<QuestCardDTO[]> {
 
   const data: QuestsResponse = await response.json();
   handlePlayerIdResponse(data);
-  return data.quests;
+  return data;
 }
 
 /**

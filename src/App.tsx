@@ -26,11 +26,15 @@ function App() {
       try {
         setLoading(true);
         setError(null);
-        const [fetchedQuests, fetchedReceipts] = await Promise.all([
+        const [questsResponse, fetchedReceipts] = await Promise.all([
           getQuests(),
           getReceipts().catch(() => []), // Don't fail if receipts fail
         ]);
-        setQuests(fetchedQuests);
+        setQuests(questsResponse.quests);
+        // Set narrative from quests response if present (e.g., daily limit message)
+        if (questsResponse.narrative) {
+          setNarrative(questsResponse.narrative);
+        }
         setReceipts(fetchedReceipts.slice(0, 50)); // Cap at 50 client-side
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load quests');
@@ -77,8 +81,12 @@ function App() {
       }
       
       // Refetch quests after completion
-      const fetchedQuests = await getQuests();
-      setQuests(fetchedQuests);
+      const questsResponse = await getQuests();
+      setQuests(questsResponse.quests);
+      // Set narrative from quests response if present (e.g., daily limit message)
+      if (questsResponse.narrative) {
+        setNarrative(questsResponse.narrative);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to complete quest');
       console.error('Error completing quest:', err);
