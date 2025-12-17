@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 3rem;
 }
 
 .receipts-drawer {
@@ -151,6 +151,7 @@
 
 .receipts-drawer__item-share {
   margin-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .receipts-drawer__item-share-text {
@@ -159,6 +160,7 @@
   line-height: 1.5;
   color: #b0b0b0;
   font-style: italic;
+  padding: 0.75rem;
 }
 
 .receipts-drawer__item-action {

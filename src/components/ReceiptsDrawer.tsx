@@ -13,7 +13,6 @@ export function ReceiptsDrawer({ isOpen, onClose }: ReceiptsDrawerProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -32,16 +31,6 @@ export function ReceiptsDrawer({ isOpen, onClose }: ReceiptsDrawerProps) {
       console.error('Error fetching receipts:', err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleCopy = async (receipt: Receipt) => {
-    try {
-      await navigator.clipboard.writeText(receipt.shareText);
-      setCopiedId(receipt.id);
-      setTimeout(() => setCopiedId(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
     }
   };
 
@@ -106,12 +95,6 @@ export function ReceiptsDrawer({ isOpen, onClose }: ReceiptsDrawerProps) {
                           <div className="receipts-drawer__item-action-text">{receipt.action}</div>
                         </div>
                       )}
-                      <button
-                        className="receipts-drawer__item-copy"
-                        onClick={() => handleCopy(receipt)}
-                      >
-                        {copiedId === receipt.id ? '✓ Copied' : 'Copy'}
-                      </button>
                     </div>
                   )}
                 </div>
