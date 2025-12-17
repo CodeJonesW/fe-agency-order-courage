@@ -32,10 +32,13 @@ export interface StateResponse {
       lastMeaningfulActionMs?: number;
     };
   };
+  playerId?: string; // For localStorage fallback (mobile Safari)
 }
 
 export interface QuestsResponse {
   quests: QuestCardDTO[];
+  playerId?: string; // For localStorage fallback (mobile Safari)
+  narrative?: NarrativeSummary; // For calm narrative when no quests
 }
 
 export interface Receipt {
@@ -54,6 +57,7 @@ export interface QuestActionResponse {
   events: unknown[];
   narrative: NarrativeSummary | null;
   receipt?: Receipt;
+  playerId?: string; // For localStorage fallback (mobile Safari)
 }
 
 export interface ReceiptsResponse {
